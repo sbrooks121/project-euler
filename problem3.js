@@ -7,8 +7,7 @@ var maxFactor = Math.ceil(Math.sqrt(number));
 var nextFactor = 0;
 var largestPrimeFactor = 0;
 
-//function to find next prime factor
-
+//function to find next factor
 function getNextFactor(currentN, currentLPF) {
   for (var k = currentLPF + 1; k < currentN; k++) {
     if (currentN % k === 0) {
@@ -30,8 +29,9 @@ for (var i = 2; i < number; i++) {
 //find largest prime factor
 while (number > 1 && nextFactor <= maxFactor) {
   if (number % nextFactor === 0) {
-    //take number and divide by same largestPrimeFactor
+    //complete divide out curret/next factor
     number = number / nextFactor;
+    //dividing out all factors will leave the largest factor
     largestPrimeFactor = number;
     //if it does not divide, move on to nextFactor
   } else {
