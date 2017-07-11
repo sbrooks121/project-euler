@@ -3,15 +3,16 @@
 //What is the largest prime factor of the number 600851475143 ?
 
 var number = 600851475143;
+var maxFactor = Math.ceil(Math.sqrt(number));
+var nextFactor = 0;
 var largestPrimeFactor = 0;
-var nextPrimeFactor = 0;
 
 //function to find next prime factor
 
-function getNextPrimeFactor(currentN, currentLPF) {
+function getNextFactor(currentN, currentLPF) {
   for (var k = currentLPF + 1; k < currentN; k++) {
     if (currentN % k === 0) {
-      console.log('number is: ' + currentN + ' and nextPrimeFactor is: ' + k);
+      console.log('number is: ' + currentN + ' and nextFactor is: ' + k);
       return k;
     }
   }
@@ -20,21 +21,21 @@ function getNextPrimeFactor(currentN, currentLPF) {
 //get starting prime factor
 for (var i = 2; i < number; i++) {
   if (600851475143 % i === 0) {
-    nextPrimeFactor = i;
-    console.log('number is: ' + number + ' and nextPrimeFactor is: ' + i);
+    nextFactor = i;
+    console.log('number is: ' + number + ' and nextFactor is: ' + i);
     break;
   }
 }
 
 //find largest prime factor
-for (var j = 3; j < Math.ceil(Math.sqrt(number)); j++) {
-  if (number % nextPrimeFactor === 0) {
+while (number > 1 && nextFactor <= maxFactor) {
+  if (number % nextFactor === 0) {
     //take number and divide by same largestPrimeFactor
-    number = number / nextPrimeFactor;
+    number = number / nextFactor;
     largestPrimeFactor = number;
-    //if it does not divide, move on to nextPrimeFactor
+    //if it does not divide, move on to nextFactor
   } else {
-    nextPrimeFactor = getNextPrimeFactor(number, nextPrimeFactor);
+    nextFactor = getNextFactor(number, nextFactor);
     //when you run out, you have got to largest prime
   }
 }
